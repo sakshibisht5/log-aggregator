@@ -1,0 +1,6 @@
+pipeline:
+  sources:
+    - type: file
+      paths:
+        - C:/Users/USER/Desktop/log-project/test.log   #test log file
+  sinkRef: file
