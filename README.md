@@ -1,108 +1,85 @@
-Log Aggregator & Shipper
+# **Log Aggregator & Shipper**
 
-A lightweight log aggregation service built in Go, capable of tailing log files, parsing new entries, and shipping them to a destination.
+**A lightweight log aggregation service built in Go, capable of tailing log files, parsing new entries, and shipping them to a destination.**
 
-Overview
+---
 
-This project implements a simplified version of log collectors like Filebeat or Logstash. It continuously monitors log files in real-time, parses log lines, and ships them to stdout. The project demonstrates:
+## **Overview**
 
-Real-time file tailing.
+This project implements a simplified version of log collectors like **Filebeat** or **Logstash**.  
+It continuously monitors log files in real-time, parses log lines, and ships them to **stdout**.
 
-Concurrent log processing with Go channels.
+**Demonstrates:**
 
-Pluggable parser and shipper architecture.
+- Real-time file tailing
+- Concurrent log processing with Go channels
+- Pluggable parser and shipper architecture
+- Graceful handling of file rotation
+- Minimal external dependencies (`hpcloud/tail`)
 
-Graceful handling of file rotation and long-running services.
-Minimal external dependencies (hpcloud/tail)
+---
 
-Features
+## **Features**
 
-File Tailing
+### **1. File Tailing**
+- Real-time monitoring using `hpcloud/tail`
+- Handles log file rotations gracefully
 
-Uses hpcloud/tail to watch logs in real-time
+### **2. Concurrent Pipeline**
+- Uses **Go channels** for concurrency
+- Separates parsing and shipping logic
 
-Handles log file rotations gracefully
+### **3. Pluggable Shippers**
+- Current implementation: `stdout`
+- Easily extendable to file, HTTP, or TCP
 
-Concurrent Pipeline
+### **4. Logging Utilities**
+- Minimal logging wrapper for **info/error messages**
 
-Processes log lines concurrently using Go channels
+### **5. Configuration**
+- Supports **YAML configuration** (`paths`, `sink`)
+- Easy to extend for multiple sources or sinks
 
-Separates parsing and shipping logic for modularity
+---
 
-Pluggable Shippers
+## **Folder Structure**
 
-Current implementation: stdout shipping
-
-Can be extended to file, HTTP, or TCP endpoints
-
-Logging Utilities
-
-Minimal logging wrapper for info/error messages
-
-Configuration
-
-Supports YAML configuration (paths, sink type)
-
-Easy to extend for multiple sources or sinks
-
-Folder Structure
 log-project/
-├─ cmd/loggie/       # Main application
-├─ pkg/core/log/     # Logging utilities
-├─ pkg/source/file/  # File tailing
-├─ pkg/sink/stdout/  # Stdout shipping
-├─ conf/loggie.yaml  # Config file
-├─ test.log          # Sample log file
+├─ cmd/loggie/ # Main application
+├─ pkg/core/log/ # Logging utilities
+├─ pkg/source/file/ # File tailing
+├─ pkg/sink/stdout/ # Stdout shipping
+├─ conf/loggie.yaml # Config file
+├─ test.log # Sample log file
 ├─ go.mod
 ├─ README.md
 
-Getting Started
-1. Clone and Setup
-git clone https://github.com/<your-username>/log-aggregator.git
-cd log-aggregator
-go mod tidy
+- Run the Log Aggregator
+- Test Logging
 
-2. Run the Log Aggregator
-cd cmd/loggie
-go run main.go
+## **Technologies Used**
 
-3. Test Logging
+- **Go** – Concurrency and system programming
+- **hpcloud/tail** – File tailing
+- **Git & GitHub** – Version control
+- **YAML** – Configuration management
 
-Append lines to the test log:
+---
 
-echo "New log line" >> ../../test.log
+## **Learning Outcomes**
 
+- Advanced file I/O and filesystem event watching
+- Designing concurrent data pipelines with Go channels
+- Building robust long-running services
+- Parsing and structuring log data
+- Graceful shutdown and resource management
 
-Lines will appear in stdout in real-time.
+---
 
-Technologies Used
+## **Future Enhancements**
 
-Go – Concurrency and system programming
+- Add multiple pluggable shippers (HTTP, TCP, file)
+- Implement JSON and key-value parsers
+- Add metrics and observability (Prometheus)
+- Support multiple log sources with dynamic configuration
 
-hpcloud/tail – File tailing
-
-Git & GitHub – Version control
-
-YAML – Configuration management
-
-Learning Outcomes
-
-Advanced file I/O and filesystem event watching
-
-Designing concurrent data pipelines with Go channels
-
-Building robust long-running services
-
-Parsing and structuring log data
-
-Graceful shutdown and resource management
-
-Future Enhancements:
-
-Add multiple pluggable shippers. (HTTP, TCP, file)
-
-Implement JSON and key-value parsers.
-
-Add metrics and observability. (Prometheus)
-
-Support multiple log sources with dynamic configuration.
