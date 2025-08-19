@@ -45,14 +45,21 @@ It continuously monitors log files in real-time, parses log lines, and ships the
 ## **Folder Structure**
 
 log-project/
-├─ cmd/loggie/ # Main application
-├─ pkg/core/log/ # Logging utilities
-├─ pkg/source/file/ # File tailing
-├─ pkg/sink/stdout/ # Stdout shipping
-├─ conf/loggie.yaml # Config file
-├─ test.log # Sample log file
-├─ go.mod
-├─ README.md
+ cmd/loggie/ # Main application
+
+pkg/core/log/ # Logging utilities
+
+pkg/source/file/ # File tailing
+
+pkg/sink/stdout/ # Stdout shipping
+
+conf/loggie.yaml # Config file
+
+test.log # Sample log file
+
+go.mod
+
+README.md
 
 - Run the Log Aggregator
 - Test Logging
